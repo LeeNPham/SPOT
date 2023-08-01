@@ -58,5 +58,7 @@ token = get_token()
 print(token)
 result = search_for_artist(token, "ACDC")
 print(result["name"])
+artist_id = result["id"]
+print(artist_id)
 # notice: This will return a stringified json structure back to us,
 # we want to grab the artist value and the items which is our results if there's at least one of them
