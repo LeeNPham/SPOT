@@ -1,7 +1,14 @@
 <script>
-	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { PUBLIC_CLIENT_ID } from '$env/static/public';
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		console.log(PUBLIC_CLIENT_ID);
+		//try to grab a list of songs to generally display such as top tracks or playlists?
+		//refer to main.py to convert get call into a fetch to be used in onmount
+	});
 </script>
 
 <svelte:head>
@@ -24,8 +31,6 @@
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
-
-	<Counter />
 </section>
 
 <style>
