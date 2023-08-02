@@ -5,8 +5,8 @@
 <script>
 	export let src;
 	export let title;
-	export let composer;
 	export let artist;
+	export let album;
 
 	let audio;
 	let paused = true;
@@ -17,10 +17,9 @@
 	}
 </script>
 
-<article class:playing={!paused}>
+<article class="" class:playing={!paused}>
 	<h2>{title}</h2>
-	<p><strong>{composer}</strong> / performed by {artist}</p>
-
+	<p><strong>{artist}</strong> / album name: {album}</p>
 	<audio bind:this={audio} bind:paused on:play={stopOthers} controls {src} />
 </article>
 
