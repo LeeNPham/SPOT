@@ -95,14 +95,12 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-
-		to your new<br />SvelteKit app
 	</h1>
 
-	<div class="text-lg text-black">song names (top ten)</div>
-	<div class="flex flex-col justify-start">
+	<div class="text-lg text-black font-bold">song names (top ten)</div>
+	<div class="flex flex-col justify-start gap-4">
 		{#each songs as song, i}
-			<div class="flex flex-row w-full bg-gray-200 items-center gap-2">
+			<div class="flex flex-row w-full bg-gray-400 items-start gap-2 rounded-xl px-4 py-2">
 				<div>{i + 1}.</div>
 				<div>
 					<img
@@ -119,7 +117,7 @@
 					artist={song.artists[0].name}
 				/>
 
-				<iframe
+				<!-- <iframe
 					style="border-radius:12px"
 					src={`https://open.spotify.com/embed/track/${song.id}?utm_source=generator`}
 					width="100%"
@@ -129,7 +127,7 @@
 					allow="encrypted-media"
 					loading="lazy"
 					title=""
-				/>
+				/> -->
 
 				<!-- <iframe
 					title="Current Song"

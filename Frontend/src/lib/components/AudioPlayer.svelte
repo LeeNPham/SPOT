@@ -17,23 +17,17 @@
 	}
 </script>
 
-<article class="" class:playing={!paused}>
+<article class="w-full" class:playing={!paused}>
 	<h2>{title}</h2>
 	<p class="whitespace-nowrap"><strong>{artist}</strong> / album name: {album}</p>
-	<audio bind:this={audio} bind:paused on:play={stopOthers} controls {src} />
+	<audio class="w-full h-10" bind:this={audio} bind:paused on:play={stopOthers} controls {src} />
 </article>
 
 <style>
 	article {
 		max-width: 800px;
 	}
-	h2,
-	p {
-		margin: 0 0 0.3em 0;
-	}
-	audio {
-		width: 100%;
-	}
+
 	.playing {
 		color: #da0303;
 	}
