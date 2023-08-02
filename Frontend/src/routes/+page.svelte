@@ -99,10 +99,6 @@
 		to your new<br />SvelteKit app
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
 	<div class="text-lg text-black">song names (top ten)</div>
 	<div class="flex flex-col justify-start">
 		{#each songs as song, i}
@@ -118,6 +114,13 @@
 					album={song.album.name}
 					artist={song.artists[0].name}
 				/>
+
+				<!-- <iframe src={song.external_urls.spotify} frameborder="0" title="" /> -->
+				<!-- <iframe
+					title="Current Song"
+					allow="encrypted-media"
+					src={`https://open.spotify.com/embed/track/${song.uri}?utm_source=oembed`}
+				/> -->
 			</div>
 		{/each}
 	</div>
