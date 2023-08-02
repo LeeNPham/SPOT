@@ -106,13 +106,13 @@
 	<div class="text-lg text-black">song names (top ten)</div>
 	<div class="flex flex-col justify-start">
 		{#each songs as song, i}
-			<div class="flex flex-row">
+			<div class="flex flex-row w-full">
 				{i + 1}.
 				<AudioPlayer
 					src={song.preview_url}
 					title={song.name}
-					composer="Johann Strauss"
-					artist="European Archive"
+					album={song.album.name}
+					artist={song.artists[0].name}
 				/>
 			</div>
 		{/each}
