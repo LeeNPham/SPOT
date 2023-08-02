@@ -2,6 +2,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import { PUBLIC_CLIENT_ID, PUBLIC_CLIENT_SECRET } from '$env/static/public';
+	import AudioPlayer from '$lib/components/AudioPlayer.svelte';
 	import { onMount } from 'svelte';
 	let songs = [];
 	async function get_token() {
@@ -105,7 +106,15 @@
 	<div class="text-lg text-black">song names (top ten)</div>
 	<div class="flex flex-col justify-start">
 		{#each songs as song, i}
-			<div>{i + 1}. {song.name}</div>
+			<div class="flex flex-row">
+				{i + 1}.
+				<AudioPlayer
+					src={song.preview_url}
+					title={song.name}
+					composer="Johann Strauss"
+					artist="European Archive"
+				/>
+			</div>
 		{/each}
 	</div>
 </section>
