@@ -105,7 +105,11 @@
 			<div class="flex flex-row w-full bg-gray-200 items-center gap-2">
 				<div>{i + 1}.</div>
 				<div>
-					<img class="w-[100px] h-[100px] rounded-lg" src={song.album.images[0].url} alt="" />
+					<img
+						class="min-w-[100px] h-[100px] aspect-square object-cover rounded-lg"
+						src={song.album.images[0].url}
+						alt=""
+					/>
 				</div>
 
 				<AudioPlayer
@@ -115,7 +119,18 @@
 					artist={song.artists[0].name}
 				/>
 
-				<!-- <iframe src={song.external_urls.spotify} frameborder="0" title="" /> -->
+				<iframe
+					style="border-radius:12px"
+					src={`https://open.spotify.com/embed/track/${song.id}?utm_source=generator`}
+					width="100%"
+					height="100"
+					frameBorder="0"
+					allowfullscreen=""
+					allow="encrypted-media"
+					loading="lazy"
+					title=""
+				/>
+
 				<!-- <iframe
 					title="Current Song"
 					allow="encrypted-media"

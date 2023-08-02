@@ -19,10 +19,8 @@
 
 <article class="" class:playing={!paused}>
 	<h2>{title}</h2>
-	<p><strong>{artist}</strong> / album name: {album}</p>
-	<audio bind:this={audio} bind:paused on:play={stopOthers} controls {src}>
-		<!-- <source {src} type="music/mp3" /> -->
-	</audio>
+	<p class="whitespace-nowrap"><strong>{artist}</strong> / album name: {album}</p>
+	<audio bind:this={audio} bind:paused on:play={stopOthers} controls {src} />
 </article>
 
 <style>
@@ -35,7 +33,6 @@
 	}
 	audio {
 		width: 100%;
-		margin: 0.5em 0 1em 0;
 	}
 	.playing {
 		color: #da0303;
