@@ -25,7 +25,6 @@
 
 <style>
 	article {
-		margin: 0 0 1em 0;
 		max-width: 800px;
 	}
 	h2,
@@ -37,6 +36,6 @@
 		margin: 0.5em 0 1em 0;
 	}
 	.playing {
-		color: #ff3e00;
+		color: #da0303;
 	}
 </style>

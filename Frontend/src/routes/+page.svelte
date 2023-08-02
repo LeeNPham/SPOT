@@ -106,8 +106,12 @@
 	<div class="text-lg text-black">song names (top ten)</div>
 	<div class="flex flex-col justify-start">
 		{#each songs as song, i}
-			<div class="flex flex-row w-full">
-				{i + 1}.
+			<div class="flex flex-row w-full bg-gray-200 items-center gap-2">
+				<div>{i + 1}.</div>
+				<div>
+					<img class="w-[100px] h-[100px] rounded-lg" src={song.album.images[0].url} alt="" />
+				</div>
+
 				<AudioPlayer
 					src={song.preview_url}
 					title={song.name}
