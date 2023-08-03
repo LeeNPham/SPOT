@@ -5,7 +5,8 @@
 </script>
 
 <div class="app">
-	<NavMenu />
+	<div class="w-full flex justify-start p-5 bg-gray-700"><NavMenu /></div>
+
 	<main>
 		<slot />
 	</main>
