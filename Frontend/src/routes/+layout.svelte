@@ -1,9 +1,11 @@
 <script>
 	import '../app.postcss';
+	import NavMenu from '../lib/components/NavMenu.svelte';
 	import './styles.css';
 </script>
 
 <div class="app">
+	<NavMenu />
 	<main>
 		<slot />
 	</main>
