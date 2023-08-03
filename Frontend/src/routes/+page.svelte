@@ -4,12 +4,12 @@
 	import { onMount } from 'svelte';
 	import { token, auth_header } from '$store/stores';
 
-	$: {
-		if ($token) {
-			console.log($token);
-			console.log($auth_header);
-		}
-	}
+	// $: {
+	// 	if ($token) {
+	// 		console.log($token);
+	// 		console.log($auth_header);
+	// 	}
+	// }
 
 	onMount(async () => {
 		// console.log($token);
@@ -18,7 +18,7 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="AstroAudio" />
 </svelte:head>
 
 <section>
