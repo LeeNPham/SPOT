@@ -63,6 +63,15 @@
 				</a>
 
 				<a
+					href="/search"
+					on:click={() => (hidden2 = true)}
+					class="flex flex-row items-center gap-4 hover:bg-palette-medium rounded-xl px-2 py-1"
+				>
+					<HouseIcon />
+					<div class="font-semibold">Search</div>
+				</a>
+
+				<a
 					href="/profile"
 					on:click={() => (hidden2 = true)}
 					class="flex flex-row items-center gap-4 hover:bg-palette-medium rounded-xl px-2 py-1"
