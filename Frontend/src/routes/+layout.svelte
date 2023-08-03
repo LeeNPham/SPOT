@@ -1,7 +1,7 @@
 <script>
 	import '../app.postcss';
-	import NavMenu from '../lib/components/NavMenu.svelte';
 	import './styles.css';
+	import NavMenu from '../lib/components/NavMenu.svelte';
 </script>
 
 <div class="app">
@@ -12,7 +12,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>visit <a href="https://www.github.com/leenpham">My Github</a> to learn more about me!</p>
 	</footer>
 </div>
 
