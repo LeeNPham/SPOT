@@ -1,10 +1,14 @@
 <script>
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import { PUBLIC_CLIENT_ID, PUBLIC_CLIENT_SECRET } from '$env/static/public';
 	import AudioPlayer from '$lib/components/AudioPlayer.svelte';
 	import { onMount } from 'svelte';
 	let songs = [];
+	let artist_name = '';
+	let auth_header = '';
+	let artist_res;
+	let token;
+	let artist_id;
+
 	async function get_token() {
 		let auth_string = PUBLIC_CLIENT_ID + ':' + PUBLIC_CLIENT_SECRET;
 		const auth_base64 = btoa(auth_string);
@@ -39,6 +43,7 @@
 		});
 		if (response.ok) {
 			let res2 = await response.json();
+			artist_id = res2.artists.items[0].id;
 			return {
 				artist_name: res2.artists.items[0].name,
 				artist_id: res2.artists.items[0].id
@@ -62,67 +67,60 @@
 	}
 
 	onMount(async () => {
-		let token = await get_token();
-		const auth_header = { Authorization: 'Bearer ' + token };
-		let artist_res = await search_for_artist(auth_header, 'ACDC');
-		songs = await get_songs_by_artist(auth_header, artist_res.artist_id);
+		token = await get_token();
+		auth_header = { Authorization: 'Bearer ' + token };
 	});
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Search</title>
+	<meta name="description" content="Search by Artist page" />
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-	</h1>
-
+	<div class="text-lg text-black font-bold">Search for Artist:</div>
+	<div class="flex flex-col gap-4">
+		<input
+			type="text"
+			bind:value={artist_name}
+			class="p-2 border rounded-full w-full border-gray-200 h-7"
+		/>
+		<button
+			on:click={() => search_for_artist(auth_header, artist_name)}
+			class="px-4 py-2 bg-blue-500 text-white rounded"
+		>
+			Search
+		</button>
+	</div>
 	<div class="text-lg text-black font-bold">song names (top ten)</div>
 	<div class="flex flex-col justify-start gap-4">
-		{#each songs as song, i}
-			<div class="flex flex-row w-full bg-gray-400 items-start gap-2 rounded-xl px-4 py-2">
-				<div>{i + 1}.</div>
-				<div>
-					<img
-						class="min-w-[100px] h-[100px] aspect-square object-cover rounded-lg"
-						src={song.album.images[0].url}
-						alt=""
-					/>
-				</div>
+		{#if artist_id != undefined}
+			{#await get_songs_by_artist(auth_header, artist_id)}
+				Please provide an artist name for us to provide you their top ten tracks
+			{:then songs}
+				{#each songs as song, i}
+					<div class="flex flex-row w-full bg-gray-400 items-start gap-2 rounded-xl px-4 py-2">
+						<div>{i + 1}.</div>
+						<div>
+							<img
+								class="min-w-[100px] h-[100px] aspect-square object-cover rounded-lg"
+								src={song.album.images[0].url}
+								alt=""
+							/>
+						</div>
 
-				<AudioPlayer
-					src={song.preview_url}
-					title={song.name}
-					album={song.album.name}
-					artist={song.artists[0].name}
-				/>
-
-				<!-- <iframe
-					style="border-radius:12px"
-					src={`https://open.spotify.com/embed/track/${song.id}?utm_source=generator`}
-					width="100%"
-					height="100"
-					frameBorder="0"
-					allowfullscreen=""
-					allow="encrypted-media"
-					loading="lazy"
-					title=""
-				/> -->
-
-				<!-- <iframe
-					title="Current Song"
-					allow="encrypted-media"
-					src={`https://open.spotify.com/embed/track/${song.uri}?utm_source=oembed`}
-				/> -->
-			</div>
-		{/each}
+						<AudioPlayer
+							src={song.preview_url}
+							title={song.name}
+							album={song.album.name}
+							artist={song.artists[0].name}
+						/>
+					</div>
+				{/each}
+			{:catch error}
+				{error}
+			{/await}
+		{/if}
 	</div>
 </section>
 
@@ -133,25 +131,5 @@
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
 	}
 </style>
