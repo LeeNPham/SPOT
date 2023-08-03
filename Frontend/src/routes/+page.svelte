@@ -1,10 +1,19 @@
 <script>
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-
 	import { onMount } from 'svelte';
+	import { token, auth_header } from '$store/stores';
 
-	onMount(async () => {});
+	$: {
+		if ($token) {
+			console.log($token);
+			console.log($auth_header);
+		}
+	}
+
+	onMount(async () => {
+		// console.log($token);
+	});
 </script>
 
 <svelte:head>

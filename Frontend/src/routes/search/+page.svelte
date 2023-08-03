@@ -2,39 +2,21 @@
 	import { PUBLIC_CLIENT_ID, PUBLIC_CLIENT_SECRET } from '$env/static/public';
 	import AudioPlayer from '$lib/components/AudioPlayer.svelte';
 	import { onMount } from 'svelte';
-	let songs = [];
-	let artist_name = '';
-	let auth_header = '';
-	let artist_res;
-	let token;
-	let artist_id;
+	import { token, auth_header } from '$store/stores';
 
-	async function get_token() {
-		let auth_string = PUBLIC_CLIENT_ID + ':' + PUBLIC_CLIENT_SECRET;
-		const auth_base64 = btoa(auth_string);
-		const url = 'https://accounts.spotify.com/api/token';
-		const headers = {
-			Authorization: 'Basic ' + auth_base64,
-			'Content-Type': 'application/x-www-form-urlencoded'
-		};
-		const data = new URLSearchParams({ grant_type: 'client_credentials' });
-		const retrievedToken = await fetch(url, {
-			method: 'POST',
-			headers: headers,
-			body: data
-		});
-		if (retrievedToken.ok) {
-			const res1 = await retrievedToken.json();
-			return res1['access_token'];
-		} else {
-			console.log("get token didn't work");
-			return null;
+	$: {
+		if ($token) {
+			console.log($auth_header);
 		}
 	}
+	let songs = [];
+	let artist_name = '';
+	let artist_res;
+	let artist_id;
 
-	async function search_for_artist(auth_header, artist_name) {
+	async function search_for_artist(artist_name) {
 		let url = 'https://api.spotify.com/v1/search';
-		let headers = auth_header;
+		let headers = $auth_header;
 		let query = `?q=${artist_name}&type=artist&limit=2`;
 		let query_url = url + query;
 		const response = await fetch(query_url, {
@@ -54,9 +36,9 @@
 		}
 	}
 
-	async function get_songs_by_artist(auth_header, artist_id) {
+	async function get_songs_by_artist(artist_id) {
 		const url = `https://api.spotify.com/v1/artists/${artist_id}/top-tracks?country=US`;
-		const headers = auth_header;
+		const headers = $auth_header;
 
 		const result = await fetch(url, {
 			method: 'GET',
@@ -65,11 +47,6 @@
 		const res3 = await result.json();
 		return res3.tracks;
 	}
-
-	onMount(async () => {
-		token = await get_token();
-		auth_header = { Authorization: 'Bearer ' + token };
-	});
 </script>
 
 <svelte:head>
@@ -86,7 +63,7 @@
 			class="p-2 border rounded-full w-full border-gray-200 h-7"
 		/>
 		<button
-			on:click={() => search_for_artist(auth_header, artist_name)}
+			on:click={() => search_for_artist(artist_name)}
 			class="px-4 py-2 bg-blue-500 text-white rounded"
 		>
 			Search
@@ -95,7 +72,7 @@
 	<div class="text-lg text-black font-bold">song names (top ten)</div>
 	<div class="flex flex-col justify-start gap-4">
 		{#if artist_id != undefined}
-			{#await get_songs_by_artist(auth_header, artist_id)}
+			{#await get_songs_by_artist(artist_id)}
 				Please provide an artist name for us to provide you their top ten tracks
 			{:then songs}
 				{#each songs as song, i}
