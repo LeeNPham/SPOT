@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { PUBLIC_BACKEND_USERS } from '$env/static/public';
 	import { goto } from '$app/navigation';
 	let username = '';
