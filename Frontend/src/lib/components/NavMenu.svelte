@@ -15,6 +15,7 @@
 	import HouseIcon from '$lib/icons/HouseIcon.svelte';
 	import ProfileIcon from '$lib/icons/ProfileIcon.svelte';
 	import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon.svelte';
+	import { browser } from '$app/environment';
 
 	let hidden2 = true;
 

@@ -3,11 +3,15 @@
 	import './styles.css';
 	import NavMenu from '../lib/components/NavMenu.svelte';
 	import { isLoggedIn } from '$store/stores';
+	import { browser } from '$app/environment';
 
-	// $: {
-	// 	if ($isLoggedIn) {
-	// 	}
-	// }
+	$: {
+		if (browser) {
+			if (!document.cookie) {
+				$isLoggedIn = false;
+			}
+		}
+	}
 </script>
 
 <div class="app">

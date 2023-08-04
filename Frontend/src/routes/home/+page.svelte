@@ -14,7 +14,6 @@
 	<title>Home</title>
 	<meta name="description" content="AstroAudio" />
 </svelte:head>
-
 <section>
 	<h1>
 		<span class="welcome">
