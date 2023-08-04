@@ -9,6 +9,8 @@
 		if (browser) {
 			if (!document.cookie) {
 				$isLoggedIn = false;
+			} else {
+				$isLoggedIn = true;
 			}
 		}
 	}
