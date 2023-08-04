@@ -2,7 +2,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import { onMount } from 'svelte';
-	import { token, auth_header } from '$store/stores';
+	import { token, auth_header, isLoggedIn } from '$store/stores';
 	import { goto } from '$app/navigation';
 	import { _handleLogin } from './+page';
 
@@ -15,6 +15,7 @@
 		if (res == false) {
 			showWrongAccountDetails = true;
 		} else {
+			$isLoggedIn = true;
 			goto('/home');
 		}
 	}
@@ -24,8 +25,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="AstroAudio" />
+	<title>Login</title>
+	<meta name="description" content="AdAstraAudio" />
 </svelte:head>
 
 <section>
@@ -38,7 +39,7 @@
 		</span>
 	</h1>
 
-	<div class="text-lg text-black font-bold">Home Page, not so sure what to have here yet</div>
+	<div class="text-lg text-black font-bold">Login Page</div>
 	<!-- TEST -->
 	<div class="bg-palette-lightgray shadow-md rounded-xl px-8 pt-6 pb-8">
 		<h1 class="text-2xl font-bold mb-6 text-palette-dark">Login to see your Todos!</h1>

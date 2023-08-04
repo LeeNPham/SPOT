@@ -2,11 +2,18 @@
 	import '../app.postcss';
 	import './styles.css';
 	import NavMenu from '../lib/components/NavMenu.svelte';
+	import { isLoggedIn } from '$store/stores';
+
+	// $: {
+	// 	if ($isLoggedIn) {
+	// 	}
+	// }
 </script>
 
 <div class="app">
-	<div class="w-full flex justify-start p-5 bg-gray-700"><NavMenu /></div>
-
+	{#if $isLoggedIn == true}
+		<div class="w-full flex justify-start p-5 bg-gray-700"><NavMenu /></div>
+	{/if}
 	<main>
 		<slot />
 	</main>

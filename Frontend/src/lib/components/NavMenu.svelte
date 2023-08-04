@@ -55,7 +55,7 @@
 		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
 			<SidebarGroup ulClass="flex flex-col">
 				<a
-					href="/"
+					href="/home"
 					on:click={() => (hidden2 = true)}
 					class="flex flex-row items-center gap-4 hover:bg-palette-medium rounded-xl px-2 py-1"
 				>
