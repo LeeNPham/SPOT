@@ -1,4 +1,4 @@
-#!/Users/leepham/Desktop/Projects/Personal/SPOT/Backend/.venv/bin/python
+#!/Users/leepham/Desktop/Projects/Personal/SPOT/Backend/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
