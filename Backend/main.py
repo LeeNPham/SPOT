@@ -82,7 +82,7 @@ async def read_own_items(
     response: Response, current_user: User = Depends(get_current_active_user)
 ):
     response.headers["Access-Control-Allow-Origin"] = "*"
-    return {"todos": current_user.todos, "categories": current_user.categories}
+    return {"playlists": current_user.playlists, "favorites": current_user.favorites}
 
 
 # User CRUD
@@ -159,7 +159,7 @@ async def delete_user(id: str):
     response = await remove_user(id)
     if response:
         return "Successfully deleted user item"
-    raise HTTPException(404, f"There is no TODO item with this id:{id}")
+    raise HTTPException(404, f"Unable to delete User")
 
 
 # Users End

@@ -29,8 +29,8 @@ class User(BaseModel):
     first_name: str
     last_name: str
     description: Optional[str]
-    todos: Optional[list]
-    categories: Optional[list]
+    playlists: Optional[list]
+    favorites: Optional[list]
     photo_id: Optional[str]
 
     class Config:
@@ -45,12 +45,12 @@ class User(BaseModel):
                 "first_name": "Lee",
                 "last_name": "Pham",
                 "description": "hello world, i like to code, i like to consider that im a real software engineer but im just actually having fun!",
-                "todos": [
+                "playlists": [
                     "647c33b7257a0b5aa8bf7a3f",
                     "647c61bff3250a39f366376d",
                     "647c66cbf3250a39f366376e",
                 ],
-                "categories": ["647c619df3250a39f366376b", "647c61a7f3250a39f366376c"],
+                "favorites": [],
                 "photo_id": "64a388ecb30cf54357043921",
             }
         }
@@ -71,12 +71,12 @@ class UserInDb(User):
                 "first_name": "Lee",
                 "last_name": "Pham",
                 "description": "hello world, i like to code, i like to consider that im a real software engineer but im just actually having fun!",
-                "todos": [
+                "playlists": [
                     "647c33b7257a0b5aa8bf7a3f",
                     "647c61bff3250a39f366376d",
                     "647c66cbf3250a39f366376e",
                 ],
-                "categories": ["647c619df3250a39f366376b", "647c61a7f3250a39f366376c"],
+                "favorites": [],
                 "photo_id": "64a388ecb30cf54357043921",
                 "hashed_password": "Password123!",
             }
@@ -90,8 +90,8 @@ class UpdateUserModel(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     description: Optional[str]
-    todos: Optional[list]
-    categories: Optional[list]
+    playlists: Optional[list]
+    favorites: Optional[list]
     photo_id: Optional[str]
     hashed_password: Optional[str]
 
@@ -106,12 +106,12 @@ class UpdateUserModel(BaseModel):
                 "first_name": "Lee",
                 "last_name": "Pham",
                 "description": "hello world, i like to code, i like to consider that im a real software engineer but im just actually having fun!",
-                "todos": [
+                "playlists": [
                     "647c33b7257a0b5aa8bf7a3f",
                     "647c61bff3250a39f366376d",
                     "647c66cbf3250a39f366376e",
                 ],
-                "categories": ["647c619df3250a39f366376b", "647c61a7f3250a39f366376c"],
+                "favorites": [],
                 "photo_id": "64a388ecb30cf54357043921",
                 "hashed_password": "Password123!",
             }
